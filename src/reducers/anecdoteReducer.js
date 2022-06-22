@@ -6,7 +6,6 @@ const anecdotesAtStart = [
   'Premature optimization is the root of all evil.',
   'Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.'
 ]
-
 const getId = () => (100000 * Math.random()).toFixed(0)
 
 const asObject = (anecdote) => {
@@ -31,13 +30,11 @@ export const incrementVote = (id) => {
      type: 'INCREMENT',
      data: { id }
   }
- 
 } 
-
 const initialState = anecdotesAtStart.map(asObject)
-console.log(initialState)
+console.log('estado.',initialState)
 
-const reducer = (state = initialState, action) => {
+const reducer = (state = [], action) => {
   console.log('state now: ', state)
   console.log('action', action)
   switch(action.type){
@@ -52,5 +49,4 @@ const reducer = (state = initialState, action) => {
       return state
   }
 }
-
 export default reducer

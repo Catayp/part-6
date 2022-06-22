@@ -1,13 +1,15 @@
 import { incrementVote} from '../reducers/anecdoteReducer'
+import { success } from '../reducers/notificationReducer'
 import { useSelector, useDispatch } from 'react-redux'
 
 const AnecdoteList = () =>{
-  const anecdotes = useSelector(state => state)
+  const anecdotes = useSelector(state => state.anecdotes)
   const dispatch = useDispatch()
  
   const aumentVote = (id) => {
     console.log('vote', id)
     dispatch(incrementVote(id))
+    dispatch(success('you voted'))
   }
   return(
     <>
@@ -26,5 +28,4 @@ const AnecdoteList = () =>{
     </>
   )
 }
-
 export default AnecdoteList
