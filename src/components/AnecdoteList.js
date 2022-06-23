@@ -7,9 +7,9 @@ const AnecdoteList = () =>{
   const dispatch = useDispatch()
  
   const aumentVote = (id) => {
-    console.log('vote', id)
+    // console.log('vote', id)
     dispatch(incrementVote(id))
-    dispatch(success('you voted'))
+    dispatch(success('you voted',2000))
   }
   return(
     <>
