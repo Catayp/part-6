@@ -1,20 +1,20 @@
 import { incrementVote} from '../reducers/anecdoteReducer'
 import { success } from '../reducers/notificationReducer'
-import { useSelector, useDispatch } from 'react-redux'
+import { connect } from 'react-redux'
+// import { useSelector, useDispatch } from 'react-redux'
 
-const AnecdoteList = () =>{
-  const anecdotes = useSelector(state => state.anecdotes)
-  const dispatch = useDispatch()
+const AnecdoteList = (props) => {
+  // const anecdotes = useSelector(state => state.anecdotes)
+  // const dispatch = useDispatch()
  
   const aumentVote = (id) => {
-    // console.log('vote', id)
-    dispatch(incrementVote(id))
-    dispatch(success('you voted',2000))
+    props.incrementVote(id)
+    props.success('you voted',5)
   }
   return(
     <>
     <h2>Anecdotes</h2>
-    {anecdotes.map(anecdote =>
+    {props.anecdotes.map(anecdote =>
       <div key={anecdote.id}>
         <div>
           {anecdote.content}
@@ -28,4 +28,17 @@ const AnecdoteList = () =>{
     </>
   )
 }
-export default AnecdoteList
+const mapStateToProps = (state) => {
+  return{
+    anecdotes: state.anecdotes
+  }
+}
+const mapDispatchToProps = {
+  incrementVote,
+  success
+}
+const ConnectedAnecdoteList = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AnecdoteList)
+export default ConnectedAnecdoteList

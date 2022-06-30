@@ -1,10 +1,13 @@
-export const success = (messagge, number=3000) => {
+let time;
+export const success = (messagge, number=3) => {
+  number = number*1000
   return async dispatch => { 
     dispatch({
       type: 'notification',
       messagge
     })
-    setTimeout(() => {
+    clearTimeout(time)
+    time = setTimeout(() => {
       dispatch({type: 'notification', messagge: null})
     }, number)
   }  
